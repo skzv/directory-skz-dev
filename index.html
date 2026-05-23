@@ -3,40 +3,80 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-	<link rel="icon" href="/assets/img/favicon.png">
+	<meta name="theme-color" content="#050505">
+	<meta name="color-scheme" content="dark">
 
-	<title>Portfolio | Sasha Kuznetsov</title>
-	<meta name="description" content="Selected work by Sasha Kuznetsov — Implied Open, ccmux, zerohour.club, kills u with hammer, and the blog.">
+	<link rel="icon" href="/assets/img/favicon.png">
+	<link rel="apple-touch-icon" href="/assets/img/favicon.png">
+
+	<title>Portfolio | Sasha Kuznetsov — Selected work</title>
+	<meta name="description" content="Selected work by Sasha Kuznetsov — Implied Open (pre-market futures), ccmux (AI coding terminal), ZEROHOUR (JDM auto culture), Kills U With Hammer (streetwear drop), and the blog.">
 	<meta name="author" content="Sasha Kuznetsov">
+	<meta name="keywords" content="Sasha Kuznetsov, portfolio, Implied Open, ccmux, zerohour, kills u with hammer, software engineer, physicist">
+	<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 	<link rel="canonical" href="https://portfolio.skz.dev/">
+	<link rel="sitemap" type="application/xml" href="/sitemap.xml">
 
 	<meta property="og:title" content="Portfolio — Sasha Kuznetsov">
-	<meta property="og:description" content="Selected work by Sasha Kuznetsov — Implied Open, ccmux, zerohour.club, kills u with hammer, and the blog.">
+	<meta property="og:description" content="Six selected projects: Implied Open, ccmux, ZEROHOUR, Kills U With Hammer, the blog, and skz.dev.">
 	<meta property="og:url" content="https://portfolio.skz.dev/">
 	<meta property="og:site_name" content="Sasha Kuznetsov">
 	<meta property="og:type" content="website">
 	<meta property="og:locale" content="en_US">
-	<meta property="og:image" content="https://skz.dev/assets/img/preview-banner.png">
+	<meta property="og:image" content="https://portfolio.skz.dev/assets/img/og.png">
+	<meta property="og:image:secure_url" content="https://portfolio.skz.dev/assets/img/og.png">
+	<meta property="og:image:type" content="image/png">
 	<meta property="og:image:width" content="1200">
-	<meta property="og:image:height" content="600">
+	<meta property="og:image:height" content="630">
+	<meta property="og:image:alt" content="Portfolio · Sasha Kuznetsov — six projects: Sasha's Blog, Implied Open, ccmux, ZEROHOUR, Kills U With Hammer, skz.dev">
 
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:site" content="@_skzv">
 	<meta name="twitter:creator" content="@_skzv">
 	<meta name="twitter:title" content="Portfolio — Sasha Kuznetsov">
-	<meta name="twitter:description" content="Selected work by Sasha Kuznetsov — Implied Open, ccmux, zerohour.club, kills u with hammer, and the blog.">
-	<meta name="twitter:image" content="https://skz.dev/assets/img/preview-banner.png">
+	<meta name="twitter:description" content="Six selected projects: Implied Open, ccmux, ZEROHOUR, Kills U With Hammer, the blog, and skz.dev.">
+	<meta name="twitter:image" content="https://portfolio.skz.dev/assets/img/og.png">
+	<meta name="twitter:image:alt" content="Portfolio · Sasha Kuznetsov — six projects shown in distinct typography">
 
 	<script type="application/ld+json">
 	{
 		"@context": "https://schema.org",
-		"@type": "WebPage",
+		"@type": "CollectionPage",
 		"name": "Portfolio",
 		"headline": "Portfolio — Sasha Kuznetsov",
-		"description": "Selected work by Sasha Kuznetsov — Implied Open, ccmux, zerohour.club, kills u with hammer, and the blog.",
+		"description": "Selected work by Sasha Kuznetsov — Implied Open, ccmux, ZEROHOUR, Kills U With Hammer, the blog, and skz.dev.",
 		"url": "https://portfolio.skz.dev/",
-		"image": "https://skz.dev/assets/img/preview-banner.png",
-		"author": { "@type": "Person", "name": "Sasha Kuznetsov", "url": "https://skz.dev" }
+		"image": {
+			"@type": "ImageObject",
+			"url": "https://portfolio.skz.dev/assets/img/og.png",
+			"width": 1200,
+			"height": 630
+		},
+		"inLanguage": "en",
+		"author": {
+			"@type": "Person",
+			"name": "Sasha Kuznetsov",
+			"url": "https://skz.dev",
+			"sameAs": [
+				"https://blog.skz.dev",
+				"https://github.com/skzv",
+				"https://www.linkedin.com/in/skzv",
+				"https://twitter.com/_skzv"
+			]
+		},
+		"mainEntity": {
+			"@type": "ItemList",
+			"numberOfItems": 6,
+			"itemListOrder": "https://schema.org/ItemListOrderAscending",
+			"itemListElement": [
+				{ "@type": "ListItem", "position": 1, "url": "https://blog.skz.dev",         "name": "Sasha Kuznetsov's Blog" },
+				{ "@type": "ListItem", "position": 2, "url": "https://impliedopen.com",      "name": "Implied Open" },
+				{ "@type": "ListItem", "position": 3, "url": "https://ccmux.ai",             "name": "ccmux" },
+				{ "@type": "ListItem", "position": 4, "url": "https://zerohour.club",        "name": "ZEROHOUR" },
+				{ "@type": "ListItem", "position": 5, "url": "https://killsuwithhammer.com", "name": "Kills U With Hammer" },
+				{ "@type": "ListItem", "position": 6, "url": "https://skz.dev",              "name": "skz.dev" }
+			]
+		}
 	}
 	</script>
 
@@ -678,6 +718,19 @@
 		tick();
 		setInterval(tick, 1000);
 	}());
+</script>
+
+<!-- 100% privacy-first analytics -->
+<script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+<noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif?collect-dnt=true" alt="" referrerpolicy="no-referrer-when-downgrade"/></noscript>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-236VWNZM8D"></script>
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-236VWNZM8D');
 </script>
 
 </body>
