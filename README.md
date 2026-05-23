@@ -1,6 +1,6 @@
 # portfolio-skz-dev
 
-Single-page portfolio served at https://portfolio.skz.dev.
+Single-page portfolio served at https://directory.skz.dev.
 
 Standalone HTML — no build step. GitHub Pages serves `index.html` from `main`
 and HTTPS is auto-provisioned via the `CNAME` file.

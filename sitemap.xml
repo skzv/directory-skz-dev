@@ -2,11 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://portfolio.skz.dev/</loc>
+    <loc>https://directory.skz.dev/</loc>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://portfolio.skz.dev/assets/img/og.png</image:loc>
+      <image:loc>https://directory.skz.dev/assets/img/og.png</image:loc>
       <image:title>Portfolio · Sasha Kuznetsov</image:title>
     </image:image>
   </url>

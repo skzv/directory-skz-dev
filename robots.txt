@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://portfolio.skz.dev/sitemap.xml
+Sitemap: https://directory.skz.dev/sitemap.xml
