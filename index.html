@@ -448,6 +448,7 @@
 			flex-wrap: wrap;
 		}
 		.ticker .sym { color: var(--ink); font-weight: 600; }
+		.ticker .pct { transition: color 0.4s ease; }
 		.ticker .up { color: var(--accent-03); }
 		.ticker .dn { color: var(--accent-05); }
 
@@ -682,10 +683,10 @@
 				real time — derived from live futures, the yield curve, and VIX.
 			</p>
 			<div class="ticker">
-				<span><span class="sym">SPX</span> <span class="up">+0.42%</span></span>
-				<span><span class="sym">NDX</span> <span class="up">+0.71%</span></span>
-				<span><span class="sym">DJI</span> <span class="dn">−0.18%</span></span>
-				<span><span class="sym">RUT</span> <span class="up">+0.09%</span></span>
+				<span data-sym="SPX"><span class="sym">SPX</span> <span class="pct up">+0.42%</span></span>
+				<span data-sym="NDX"><span class="sym">NDX</span> <span class="pct up">+0.71%</span></span>
+				<span data-sym="DJI"><span class="sym">DJI</span> <span class="pct dn">−0.18%</span></span>
+				<span data-sym="RUT"><span class="sym">RUT</span> <span class="pct up">+0.09%</span></span>
 			</div>
 		</div>
 		<div class="aside">
@@ -787,6 +788,33 @@
 </footer>
 
 <script>
+	// Implied Open ticker — mean-reverting drift, ±0.05% noise per tick.
+	// Not real data; designed so swapping in an API call is a one-place change.
+	(function () {
+		if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+		var seeds = { SPX: 0.42, NDX: 0.71, DJI: -0.18, RUT: 0.09 };
+		var live = Object.assign({}, seeds);
+
+		function fmt(v) {
+			var sign = v >= 0 ? '+' : '−';
+			return sign + Math.abs(v).toFixed(2) + '%';
+		}
+
+		function tick() {
+			Object.keys(live).forEach(function (sym) {
+				var noise = (Math.random() - 0.5) * 0.05;
+				var pull = (seeds[sym] - live[sym]) * 0.10;
+				live[sym] += noise + pull;
+				var el = document.querySelector('[data-sym="' + sym + '"] .pct');
+				if (!el) return;
+				el.textContent = fmt(live[sym]);
+				el.classList.toggle('up', live[sym] >= 0);
+				el.classList.toggle('dn', live[sym] < 0);
+			});
+		}
+		setInterval(tick, 1400);
+	}());
+
 	// ZEROHOUR kana rotation — JDM lexicon, blur-swap every ~5s.
 	(function () {
 		var kana = document.querySelector('.p-zerohour h2 .kana');
