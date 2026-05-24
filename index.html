@@ -541,13 +541,16 @@
 		.foot .end { text-align: right; }
 		.foot a:hover { color: var(--ink); }
 
-		/* per-letter title reveal — starts after the row has risen in */
+		/* per-letter title reveal — starts after the row has risen in.
+		   Each character is in an inline-block span (.sc); the row's title
+		   stays clean at desktop sizes. On mobile we skip the splitting
+		   entirely (see the JS gate) to avoid subpixel gaps between
+		   italic letters that would otherwise show as dark stripes. */
 		.project h2 a .sc {
 			display: inline-block;
 			opacity: 0;
 			transform: translateY(0.32em);
 			animation: title-rise 0.55s cubic-bezier(.2,.8,.2,1) forwards;
-			will-change: transform, opacity;
 		}
 		@keyframes title-rise {
 			to { opacity: 1; transform: translateY(0); }
@@ -798,8 +801,13 @@
 
 <script>
 	// Per-letter title reveal — start each title's stagger after its row has risen.
+	// Skipped on mobile: at small italic font sizes, each inline-block .sc creates
+	// a separate stacking context (from the transform), and tiny subpixel seams
+	// between letters bleed the dark body through as dark stripes through the
+	// glyphs. Desktop sizes are large enough that this isn't visible.
 	(function () {
 		if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+		if (matchMedia('(max-width: 800px)').matches) return;
 
 		var rowDelays = [0.10, 0.18, 0.26, 0.34, 0.42, 0.50];
 		var perChar = 0.022;
