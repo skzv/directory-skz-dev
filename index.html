@@ -645,6 +645,18 @@
 		.foot .end { text-align: right; }
 		.foot a:hover { color: var(--ink); }
 
+		/* per-letter title reveal — starts after the row has risen in */
+		.project h2 a .sc {
+			display: inline-block;
+			opacity: 0;
+			transform: translateY(0.32em);
+			animation: title-rise 0.55s cubic-bezier(.2,.8,.2,1) forwards;
+			will-change: transform, opacity;
+		}
+		@keyframes title-rise {
+			to { opacity: 1; transform: translateY(0); }
+		}
+
 		/* ─── ANIMATIONS ───────────────────────────────────────── */
 		@keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
 		@keyframes pulse {
@@ -889,6 +901,47 @@
 </footer>
 
 <script>
+	// Per-letter title reveal — start each title's stagger after its row has risen.
+	(function () {
+		if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+		var rowDelays = [0.10, 0.18, 0.26, 0.34, 0.42, 0.50];
+		var perChar = 0.022;
+
+		document.querySelectorAll('.project h2 a').forEach(function (a, rowIdx) {
+			var startDelay = (rowDelays[rowIdx] || 0.10) + 0.25; // wait for row rise
+			var idx = 0;
+
+			function walk(node) {
+				Array.from(node.childNodes).forEach(function (c) {
+					if (c.nodeType === 3) {
+						var frag = document.createDocumentFragment();
+						var text = c.textContent;
+						for (var i = 0; i < text.length; i++) {
+							var ch = text[i];
+							if (ch === ' ' || ch === ' ') {
+								frag.appendChild(document.createTextNode(ch));
+								continue;
+							}
+							var span = document.createElement('span');
+							span.className = 'sc';
+							span.style.animationDelay = (startDelay + idx * perChar) + 's';
+							span.textContent = ch;
+							frag.appendChild(span);
+							idx++;
+						}
+						c.parentNode.replaceChild(frag, c);
+					} else if (c.nodeType === 1) {
+						// don't split kana — let it animate as a single unit via the row rise
+						if (c.classList && c.classList.contains('kana')) return;
+						walk(c);
+					}
+				});
+			}
+			walk(a);
+		});
+	}());
+
 	// Scroll spine — six dots track active project via IntersectionObserver.
 	(function () {
 		var dots = Array.prototype.slice.call(document.querySelectorAll('.spine a'));
