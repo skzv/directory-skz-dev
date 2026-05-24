@@ -147,6 +147,47 @@
 
 		::selection { background: var(--accent-04); color: var(--bg); }
 
+		/* custom cursor (real-pointer devices only) */
+		@media (hover: hover) and (pointer: fine) {
+			html, body, a, button { cursor: none; }
+			.cursor {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 8px;
+				height: 8px;
+				border-radius: 50%;
+				background: var(--ink);
+				pointer-events: none;
+				z-index: 10001;
+				transform: translate3d(-50%, -50%, 0);
+				will-change: transform;
+				transition:
+					width 0.35s cubic-bezier(.2,.8,.2,1),
+					height 0.35s cubic-bezier(.2,.8,.2,1),
+					background 0.35s ease,
+					border-color 0.35s ease,
+					border-width 0.35s ease,
+					opacity 0.2s ease;
+				box-shadow: 0 0 8px var(--ink);
+			}
+			.cursor.hover {
+				width: 40px;
+				height: 40px;
+				background: transparent;
+				border: 1.5px solid var(--cursor-accent, var(--ink));
+				box-shadow: 0 0 24px 0 color-mix(in srgb, var(--cursor-accent, var(--ink)) 35%, transparent);
+			}
+			.cursor.link {
+				width: 22px;
+				height: 22px;
+				background: transparent;
+				border: 1.5px solid var(--cursor-accent, var(--ink));
+				box-shadow: none;
+			}
+			.cursor.hidden { opacity: 0; }
+		}
+
 		/* keyboard focus — never seen on mouse clicks, only on Tab */
 		:focus { outline: none; }
 		a:focus-visible {
@@ -585,6 +626,8 @@
 
 <body>
 
+<div class="cursor hidden" aria-hidden="true"></div>
+
 <nav class="bar">
 	<a class="back" href="https://skz.dev">SKZ.DEV</a>
 	<span class="mark">DIRECTORY / 2026</span>
@@ -738,6 +781,62 @@
 </footer>
 
 <script>
+	// custom cursor — dot follows mouse, swells to accent ring on project rows.
+	(function () {
+		if (!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+		var cursor = document.querySelector('.cursor');
+		if (!cursor) return;
+
+		var x = window.innerWidth / 2, y = window.innerHeight / 2;
+		var cx = x, cy = y;
+		var raf = null;
+
+		function tick() {
+			cx += (x - cx) * 0.28;
+			cy += (y - cy) * 0.28;
+			cursor.style.transform = 'translate3d(' + cx + 'px, ' + cy + 'px, 0) translate(-50%, -50%)';
+			raf = requestAnimationFrame(tick);
+		}
+
+		document.addEventListener('mousemove', function (e) {
+			x = e.clientX;
+			y = e.clientY;
+			if (cursor.classList.contains('hidden')) {
+				cursor.classList.remove('hidden');
+				cx = x; cy = y;
+			}
+			if (!raf) tick();
+		});
+
+		document.addEventListener('mouseleave', function () { cursor.classList.add('hidden'); });
+		document.addEventListener('mouseenter', function () { cursor.classList.remove('hidden'); });
+
+		// Project-row hover: ring + accent color
+		document.querySelectorAll('.project').forEach(function (row) {
+			row.addEventListener('mouseenter', function () {
+				var accent = getComputedStyle(row).getPropertyValue('--accent').trim();
+				cursor.style.setProperty('--cursor-accent', accent);
+				cursor.classList.add('hover');
+			});
+			row.addEventListener('mouseleave', function () {
+				cursor.classList.remove('hover');
+			});
+		});
+
+		// Generic link hover (outside project rows): smaller accent ring
+		document.querySelectorAll('a').forEach(function (a) {
+			if (a.closest('.project')) return;
+			a.addEventListener('mouseenter', function () {
+				cursor.style.setProperty('--cursor-accent', 'var(--ink)');
+				cursor.classList.add('link');
+			});
+			a.addEventListener('mouseleave', function () {
+				cursor.classList.remove('link');
+			});
+		});
+	}());
+
 	// keyboard nav: 1-6 jump to project, j/k step through, Enter opens.
 	(function () {
 		var titles = Array.prototype.slice.call(document.querySelectorAll('.project h2 a'));
