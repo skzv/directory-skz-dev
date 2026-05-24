@@ -147,6 +147,21 @@
 
 		::selection { background: var(--accent-04); color: var(--bg); }
 
+		/* keyboard focus — never seen on mouse clicks, only on Tab */
+		:focus { outline: none; }
+		a:focus-visible {
+			outline: 1.5px solid var(--ink);
+			outline-offset: 4px;
+			border-radius: 1px;
+		}
+		.project a:focus-visible {
+			outline: 1.5px solid var(--accent);
+			outline-offset: 6px;
+		}
+		.project h2 a:focus-visible {
+			outline-offset: 8px;
+		}
+
 		/* ─── HEADER ───────────────────────────────────────────── */
 		.bar {
 			position: fixed;
