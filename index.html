@@ -522,58 +522,6 @@
 			text-transform: uppercase;
 		}
 
-		/* ─── HOVER PREVIEW ────────────────────────────────────── */
-		.preview {
-			position: fixed;
-			bottom: 5vh;
-			right: 4vw;
-			width: 320px;
-			aspect-ratio: 1280 / 800;
-			background: var(--bg-elevated);
-			border: 1px solid var(--rule);
-			z-index: 50;
-			pointer-events: none;
-			opacity: 0;
-			transform: translateY(10px);
-			transition:
-				opacity 0.5s cubic-bezier(.2,.8,.2,1),
-				transform 0.5s cubic-bezier(.2,.8,.2,1),
-				border-color 0.4s ease,
-				box-shadow 0.5s ease;
-			overflow: hidden;
-		}
-		.preview.visible {
-			opacity: 1;
-			transform: translateY(0);
-			border-color: color-mix(in srgb, var(--preview-accent, var(--ink)) 50%, transparent);
-			box-shadow: 0 8px 64px 0 color-mix(in srgb, var(--preview-accent, var(--ink)) 20%, transparent),
-			            0 2px 12px 0 rgba(0,0,0,0.45);
-		}
-		.preview-img {
-			width: 100%;
-			height: 100%;
-			display: block;
-			object-fit: cover;
-			object-position: top left;
-			filter: saturate(0.92) contrast(1.04);
-		}
-		.preview-caption {
-			position: absolute;
-			left: 0;
-			right: 0;
-			bottom: 0;
-			padding: 0.7rem 1rem;
-			font-family: var(--mono);
-			font-size: 10px;
-			letter-spacing: 0.22em;
-			text-transform: uppercase;
-			color: var(--ink);
-			background: linear-gradient(to top, rgba(5,5,5,0.85) 0%, rgba(5,5,5,0) 100%);
-		}
-		@media (max-width: 1100px) {
-			.preview { display: none; }
-		}
-
 		/* ─── FOOTER ───────────────────────────────────────────── */
 		.foot {
 			width: var(--container);
@@ -681,11 +629,6 @@
 </head>
 
 <body>
-
-<aside class="preview" aria-hidden="true">
-	<img class="preview-img" src="" alt="">
-	<div class="preview-caption"></div>
-</aside>
 
 <nav class="bar">
 	<a class="back" href="https://skz.dev">SKZ.DEV</a>
@@ -878,48 +821,6 @@
 				});
 			}
 			walk(a);
-		});
-	}());
-
-	// Hover preview thumbnails — fixed card, bottom-right, accent-colored glow.
-	(function () {
-		if (!matchMedia('(hover: hover)').matches) return;
-		if (window.innerWidth < 1100) return;
-
-		var slugs = {
-			'p-blog': ['blog', 'blog.skz.dev'],
-			'p-impliedopen': ['impliedopen', 'impliedopen.com'],
-			'p-ccmux': ['ccmux', 'ccmux.ai'],
-			'p-zerohour': ['zerohour', 'zerohour.club'],
-			'p-hammer': ['hammer', 'killsuwithhammer.com'],
-			'p-home': ['home', 'skz.dev']
-		};
-
-		var preview = document.querySelector('.preview');
-		var img = preview.querySelector('.preview-img');
-		var caption = preview.querySelector('.preview-caption');
-
-		// preload all thumbnails so the first hover is instant
-		Object.keys(slugs).forEach(function (k) {
-			var i = new Image();
-			i.src = 'assets/img/previews/' + slugs[k][0] + '.jpg';
-		});
-
-		document.querySelectorAll('.project').forEach(function (row) {
-			var match;
-			for (var k in slugs) if (row.classList.contains(k)) { match = slugs[k]; break; }
-			if (!match) return;
-
-			row.addEventListener('mouseenter', function () {
-				var accent = getComputedStyle(row).getPropertyValue('--accent').trim();
-				preview.style.setProperty('--preview-accent', accent);
-				img.src = 'assets/img/previews/' + match[0] + '.jpg';
-				caption.textContent = match[1];
-				preview.classList.add('visible');
-			});
-			row.addEventListener('mouseleave', function () {
-				preview.classList.remove('visible');
-			});
 		});
 	}());
 
