@@ -1,3 +1,10 @@
 .DS_Store
 .playwright-mcp/
 _og.html
+
+# Working screenshots from local previewing/testing
+baseline-*.png
+change*.png
+mobile-*.png
+verify-*.png
+shot-*.png
