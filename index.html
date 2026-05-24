@@ -738,6 +738,46 @@
 </footer>
 
 <script>
+	// keyboard nav: 1-6 jump to project, j/k step through, Enter opens.
+	(function () {
+		var titles = Array.prototype.slice.call(document.querySelectorAll('.project h2 a'));
+		if (!titles.length) return;
+
+		function focusProject(i) {
+			var a = titles[i];
+			if (!a) return;
+			a.focus({ preventScroll: true });
+			a.scrollIntoView({ behavior: 'smooth', block: 'center' });
+		}
+
+		function currentIndex() {
+			var i = titles.indexOf(document.activeElement);
+			return i === -1 ? -1 : i;
+		}
+
+		document.addEventListener('keydown', function (e) {
+			// don't hijack modified shortcuts (Cmd+1 switches tabs, etc.)
+			if (e.metaKey || e.ctrlKey || e.altKey) return;
+			// don't fire while typing in an input
+			var t = e.target;
+			if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
+
+			var k = e.key;
+			if (k >= '1' && k <= '6') {
+				e.preventDefault();
+				focusProject(parseInt(k, 10) - 1);
+			} else if (k === 'j' || k === 'J') {
+				e.preventDefault();
+				var i = currentIndex();
+				focusProject(i < 0 ? 0 : Math.min(i + 1, titles.length - 1));
+			} else if (k === 'k' || k === 'K') {
+				e.preventDefault();
+				var i = currentIndex();
+				focusProject(i < 0 ? 0 : Math.max(i - 1, 0));
+			}
+		});
+	}());
+
 	(function () {
 		var el = document.getElementById('clock');
 		function tick() {
