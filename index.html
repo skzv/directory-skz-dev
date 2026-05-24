@@ -497,6 +497,12 @@
 			margin-left: 0.5em;
 			transform: skewX(6deg);
 			letter-spacing: 0.05em;
+			transition: opacity 0.45s ease, filter 0.45s ease;
+			filter: blur(0);
+		}
+		.p-zerohour h2 .kana.swap {
+			opacity: 0;
+			filter: blur(4px);
 		}
 
 		/* ── 06 SKZ.DEV — the home page ────────────────────────── */
@@ -781,6 +787,25 @@
 </footer>
 
 <script>
+	// ZEROHOUR kana rotation — JDM lexicon, blur-swap every ~5s.
+	(function () {
+		var kana = document.querySelector('.p-zerohour h2 .kana');
+		if (!kana) return;
+		if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+		var words = ['零時', '峠', '暁', '走り屋', '終電'];
+		var i = 0;
+
+		setInterval(function () {
+			kana.classList.add('swap');
+			setTimeout(function () {
+				i = (i + 1) % words.length;
+				kana.textContent = words[i];
+				kana.classList.remove('swap');
+			}, 450);
+		}, 5000);
+	}());
+
 	// custom cursor — dot follows mouse, swells to accent ring on project rows.
 	(function () {
 		if (!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
