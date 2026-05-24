@@ -601,6 +601,20 @@
 			.project .tag { font-size: 9px; padding: 0.35rem 0.6rem; }
 			.project .desc { font-size: 1rem; }
 
+			/* Mobile title sizes — the clamp() min values are sized for desktop
+			   fallback; on a real narrow screen we want smaller titles so words
+			   actually fit on a line. Word-spans (.sw) keep words atomic. */
+			.p-blog h2        { font-size: 2.2rem; }
+			.p-impliedopen h2 { font-size: 1.7rem; }
+			.p-ccmux h2       { font-size: 1.9rem; }
+			.p-zerohour h2    { font-size: 2.2rem; }
+			.p-hammer h2      { font-size: 2.1rem; line-height: 1; }
+			.p-home h2        { font-size: 2.2rem; }
+			.project h2 a .sw {
+				display: inline-block;
+				white-space: nowrap;
+			}
+
 			.ticker { gap: 1rem; font-size: 10px; }
 			.ticker > span { white-space: nowrap; }
 
@@ -794,24 +808,45 @@
 			var startDelay = (rowDelays[rowIdx] || 0.10) + 0.25; // wait for row rise
 			var idx = 0;
 
+			function wrapWord(word) {
+				var sw = document.createElement('span');
+				sw.className = 'sw';
+				for (var i = 0; i < word.length; i++) {
+					var sc = document.createElement('span');
+					sc.className = 'sc';
+					sc.style.animationDelay = (startDelay + idx * perChar) + 's';
+					sc.textContent = word[i];
+					sw.appendChild(sc);
+					idx++;
+				}
+				return sw;
+			}
+
 			function walk(node) {
 				Array.from(node.childNodes).forEach(function (c) {
 					if (c.nodeType === 3) {
 						var frag = document.createDocumentFragment();
 						var text = c.textContent;
+						// Split into [word, whitespace, word, whitespace, ...]
+						// Whitespace runs stay as bare text nodes so the browser
+						// can break lines between words. Each word becomes an
+						// inline-block .sw so its per-letter spans stay together.
+						var buf = '';
+						function flushBuf() {
+							if (buf) { frag.appendChild(wrapWord(buf)); buf = ''; }
+						}
 						for (var i = 0; i < text.length; i++) {
 							var ch = text[i];
-							if (ch === ' ' || ch === ' ') {
+							// Break ONLY on normal space. NBSP (U+00A0) is intentional
+							// glue — e.g. "Implied&nbsp;Open" — so it stays inside the .sw.
+							if (ch === ' ') {
+								flushBuf();
 								frag.appendChild(document.createTextNode(ch));
-								continue;
+							} else {
+								buf += ch;
 							}
-							var span = document.createElement('span');
-							span.className = 'sc';
-							span.style.animationDelay = (startDelay + idx * perChar) + 's';
-							span.textContent = ch;
-							frag.appendChild(span);
-							idx++;
 						}
+						flushBuf();
 						c.parentNode.replaceChild(frag, c);
 					} else if (c.nodeType === 1) {
 						// don't split kana — let it animate as a single unit via the row rise
