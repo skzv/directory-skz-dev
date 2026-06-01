@@ -1,5 +1,6 @@
 .DS_Store
 .playwright-mcp/
+.claude/
 _og.html
 
 # Working screenshots from local previewing/testing
