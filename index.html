@@ -28,7 +28,7 @@
 	<meta property="og:image:type" content="image/png">
 	<meta property="og:image:width" content="1200">
 	<meta property="og:image:height" content="630">
-	<meta property="og:image:alt" content="Directory · Sasha Kuznetsov — seven projects: Sasha's Blog, Implied Open, ccmux, Intuitive Papers, ZEROHOUR, Kills U With Hammer, skz.dev">
+	<meta property="og:image:alt" content="Directory · Sasha Kuznetsov — selected projects shown in distinct typography">
 
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:site" content="@_skzv">
@@ -36,7 +36,7 @@
 	<meta name="twitter:title" content="Sasha Kuznetsov — Projects &amp; Selected Work">
 	<meta name="twitter:description" content="Explore projects by Sasha Kuznetsov: AI coding tools, interactive research explainers, market data, writing, car culture, and streetwear.">
 	<meta name="twitter:image" content="https://directory.skz.dev/assets/img/og.png">
-	<meta name="twitter:image:alt" content="Directory · Sasha Kuznetsov — seven projects shown in distinct typography">
+	<meta name="twitter:image:alt" content="Directory · Sasha Kuznetsov — selected projects shown in distinct typography">
 
 	<script type="application/ld+json">
 	{
@@ -67,7 +67,7 @@
 		},
 		"mainEntity": {
 			"@type": "ItemList",
-			"numberOfItems": 7,
+			"numberOfItems": 8,
 			"itemListOrder": "https://schema.org/ItemListOrderAscending",
 			"itemListElement": [
 				{
@@ -75,49 +75,56 @@
 					"position": 1,
 					"url": "https://blog.skz.dev",
 					"name": "Sasha Kuznetsov's Blog",
-					"description": "Essays by Sasha Kuznetsov about projects and insights."
+					"description": "Where I write about what I’m building and learning."
 				},
 				{
 					"@type": "ListItem",
 					"position": 2,
 					"url": "https://impliedopen.com",
 					"name": "Implied Open",
-					"description": "Live market data that uses futures to show what the market is saying even when it's closed. I built it to understand how futures and spot prices relate, tracking implied opens for the S&P 500, Dow, Nasdaq 100, Russell 2000, and global indices."
+					"description": "See what index futures imply before the market opens. I built this to explore the relationship between futures and spot prices."
 				},
 				{
 					"@type": "ListItem",
 					"position": 3,
 					"url": "https://ccmux.ai",
 					"name": "ccmux",
-					"description": "A terminal UI (TUI) that keeps your AI coding sessions in one place: Claude Code, Codex, Antigravity. They sync between your Mac and your phone, send a push when the agent needs input, and keep your laptop awake while they run. I built it so I can manage every session from the terminal without remembering commands."
+					"description": "My terminal interface for managing AI coding sessions across Mac and phone. Keep Claude Code, Codex, and Antigravity together, with notifications when an agent needs you."
 				},
 				{
 					"@type": "ListItem",
 					"position": 4,
 					"url": "https://intuitivepapers.ai",
 					"name": "Intuitive Papers",
-					"description": "I built this to study research papers and build an intuitive understanding of the hottest and most important AI papers. Each explainer starts with the intuition before the math, with playable figures and claims checked against the source."
+					"description": "How I study AI research: intuition first, then the math. Interactive explainers with playable figures and claims checked against the original papers."
 				},
 				{
 					"@type": "ListItem",
 					"position": 5,
 					"url": "https://zerohour.club",
 					"name": "ZEROHOUR",
-					"description": "ZEROHOUR is my car club and exploration of JDM auto culture."
+					"description": "My car club, rooted in JDM culture."
 				},
 				{
 					"@type": "ListItem",
 					"position": 6,
 					"url": "https://killsuwithhammer.com",
 					"name": "Kills U With Hammer",
-					"description": "Kills U With Hammer is my exploration into fashion through a limited streetwear drop."
+					"description": "My first exploration into streetwear. One limited drop."
 				},
 				{
 					"@type": "ListItem",
 					"position": 7,
+					"url": "https://stickers.skz.dev/",
+					"name": "Stickerly Import Bot",
+					"description": "Bring animated and static Sticker.ly packs into Telegram. A free bot with transparent animation conversion, live progress, and a native pack library."
+				},
+				{
+					"@type": "ListItem",
+					"position": 8,
 					"url": "https://skz.dev",
 					"name": "skz.dev",
-					"description": "My personal homepage, skz.dev — my first landing page, online since 2020."
+					"description": "My original home on the web, online since 2020."
 				}
 			],
 			"@id": "https://directory.skz.dev/#projects"
@@ -188,7 +195,7 @@
 			inset: 0;
 			pointer-events: none;
 			z-index: 999;
-			background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.55) 100%);
+			background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.18) 100%);
 		}
 
 		a { color: inherit; text-decoration: none; }
@@ -250,7 +257,7 @@
 			margin: 0 auto;
 			padding: 7rem 0 2.5rem;
 			display: grid;
-			grid-template-columns: auto 1fr auto;
+			grid-template-columns: 1fr auto;
 			gap: 2rem;
 			align-items: baseline;
 			font-family: var(--mono);
@@ -259,7 +266,9 @@
 			text-transform: uppercase;
 			color: var(--ink-faint);
 		}
-		.section-head .label { color: var(--ink); margin: 0; font: inherit; }
+		.section-head .label { color: var(--ink-faint); }
+		.section-head h1 { margin: 0.7rem 0 0; font-family: var(--serif); font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 400; line-height: 1.1; letter-spacing: -0.03em; text-transform: none; color: var(--ink); }
+		.section-head time { align-self: end; }
 		.intro {
 			width: var(--container);
 			margin: 0 auto;
@@ -268,17 +277,13 @@
 			color: var(--ink-soft);
 			text-wrap: pretty;
 		}
-		.section-head .rule {
-			height: 1px;
-			background: var(--rule);
-			margin: 0 1rem;
-		}
+		.intro p { max-width: 54ch; margin: 0; }
 
 		/* ─── PROJECTS ─────────────────────────────────────────── */
 		.projects {
 			list-style: none;
 			padding: 0;
-			margin: 0 auto 8rem;
+			margin: 0 auto 3rem;
 			width: var(--container);
 		}
 
@@ -336,7 +341,7 @@
 			position: relative;
 		}
 		.project .num::after {
-			content: "/07";
+			content: "/08";
 			display: block;
 			font-family: var(--mono);
 			font-size: 11px;
@@ -363,18 +368,6 @@
 			padding: 0.4rem 0.7rem;
 			border: 1px solid var(--rule);
 			border-radius: 999px;
-		}
-		.project .tag.live {
-			color: var(--accent);
-			border-color: color-mix(in srgb, var(--accent) 35%, transparent);
-		}
-		.project .tag.live::before {
-			content: "●";
-			display: inline-block;
-			margin-right: 0.4em;
-			font-size: 0.7em;
-			vertical-align: middle;
-			animation: pulse 2.2s ease-in-out infinite;
 		}
 
 		.project h2 {
@@ -462,13 +455,11 @@
 			font-variant-numeric: tabular-nums;
 			flex-wrap: wrap;
 		}
-		.ticker .sym { color: var(--ink); font-weight: 600; }
-		.ticker .pct { transition: color 0.4s ease; }
-		.ticker .up { color: var(--accent-03); }
-		.ticker .dn { color: var(--accent-05); }
 
 		/* ── 03 CCMUX — terminal pane ──────────────────────────── */
-		.p-ccmux { --accent: var(--accent-03); }
+		.p-stickerly { --accent: #58c2ff; }
+        .p-stickerly h2 { font-size: clamp(2rem, 4vw, 3.5rem); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-weight: 700; letter-spacing: -.035em; }
+        .p-ccmux { --accent: var(--accent-03); }
 		.p-ccmux h2 {
 			font-family: var(--mono);
 			font-weight: 400;
@@ -644,10 +635,6 @@
 
 		/* ─── ANIMATIONS ───────────────────────────────────────── */
 		@keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
-		@keyframes pulse {
-			0%, 100% { opacity: 0.45; }
-			50% { opacity: 1; }
-		}
 		@keyframes rise {
 			from { opacity: 0; transform: translateY(20px); }
 			to   { opacity: 1; transform: translateY(0); }
@@ -662,6 +649,7 @@
 		.projects > li:nth-child(5) { animation-delay: 0.42s; }
 		.projects > li:nth-child(6) { animation-delay: 0.50s; }
 		.projects > li:nth-child(7) { animation-delay: 0.58s; }
+		.projects > li:nth-child(8) { animation-delay: 0.66s; }
 
 		/* ─── RESPONSIVE ───────────────────────────────────────── */
 		@media (max-width: 800px) {
@@ -671,15 +659,17 @@
 			.bar .mark { display: none; }
 			.bar .clock { letter-spacing: 0.06em; }
 
-			.section-head { padding: 5rem 0 1.25rem; font-size: 10px; gap: 1rem; grid-template-columns: 1fr auto; }
-			.section-head .rule { display: none; }
+			.section-head { padding: 5rem 0 1.25rem; font-size: 10px; gap: 0.75rem; grid-template-columns: 1fr; }
+			.section-head time { grid-column: 1; }
+			.section-head h1 { font-size: 2.2rem; }
+			.projects { margin-bottom: 2rem; }
 			.section-head .label { line-height: 1.7; letter-spacing: 0.15em; }
 			.section-head time { white-space: nowrap; letter-spacing: 0.08em; }
 
 			.project {
 				grid-template-columns: 1fr;
-				gap: 1.25rem;
-				padding: 2.5rem 0;
+				gap: 0.75rem;
+				padding: 2rem 0;
 			}
 			/* on touch, :hover flashes briefly on tap — keep it visually still */
 			.project:hover { transform: none; }
@@ -687,10 +677,11 @@
 			.project:hover::after { width: 0; opacity: 0; }
 			.project::after { display: none; }
 
-			.project .num { font-size: 4.5rem; }
+			.project .num { font-size: 2.5rem; }
 			.project .num::after { font-size: 10px; }
-			.project .aside { text-align: left; padding-top: 0.5rem; }
+			.project .aside { text-align: left; padding-top: 0; }
 			.project .aside .url { margin-top: 0.5rem; }
+			.project .tags { margin-bottom: 1rem; }
 			.project .tag { font-size: 9px; padding: 0.35rem 0.6rem; }
 			.project .desc { font-size: 1rem; }
 
@@ -698,6 +689,7 @@
 			   fallback; on a real narrow screen we want smaller titles so words
 			   actually fit on a line. Word-spans (.sw) keep words atomic. */
 			.p-blog h2        { font-size: 2.2rem; }
+			.p-stickerly h2 { font-size: 2rem; }
 			.p-impliedopen h2 { font-size: 1.7rem; }
 			.p-ccmux h2       { font-size: 1.9rem; }
 			.p-zerohour h2    { font-size: 2.2rem; }
@@ -746,11 +738,10 @@
 
 <main id="main">
 <header class="section-head">
-	<h1 class="label">Sasha Kuznetsov — Selected work</h1>
-	<span class="rule"></span>
+	<div><span class="label">Selected work</span><h1>Sasha Kuznetsov</h1></div>
 	<time datetime="2026-09-08">Updated 2026.09</time>
 </header>
-<p class="intro">I’m Sasha Kuznetsov. This is a collection of my projects in software, AI research, market data, writing, car culture, and fashion.</p>
+<div class="intro"><p>I’m Sasha Kuznetsov. I build software, explore research, and follow my interests into cars, fashion, and writing. Here’s what I’ve been making.</p></div>
 
 <ol class="projects">
 
@@ -758,12 +749,11 @@
 		<div class="num">01</div>
 		<div class="body">
 			<div class="tags">
-				<span class="tag live">Live</span>
 				<span class="tag">Writing</span>
 			</div>
 			<h2><a href="https://blog.skz.dev">Sasha Kuznetsov's Blog</a></h2>
 			<p class="desc">
-				Essays by Sasha Kuznetsov about projects and insights.
+				Where I write about what I’m building and learning.
 			</p>
 		</div>
 		<div class="aside">
@@ -776,23 +766,14 @@
 		<div class="num">02</div>
 		<div class="body">
 			<div class="tags">
-				<span class="tag live">Live</span>
 				<span class="tag">Finance</span>
 				<span class="tag">Data Viz</span>
 			</div>
 			<h2><a href="https://impliedopen.com">Implied&nbsp;Open</a></h2>
 			<p class="desc">
-				Live market data that uses futures to show what the market is
-				saying even when it's closed. I built it to understand how futures
-				and spot prices relate, tracking implied opens for the S&amp;P 500,
-				Dow, Nasdaq 100, Russell 2000, and global indices.
+				See what index futures imply before the market opens. I built this to explore the relationship between futures and spot prices.
 			</p>
-			<div class="ticker">
-				<span data-sym="SPX"><span class="sym">SPX</span> <span class="pct up">+0.42%</span></span>
-				<span data-sym="NDX"><span class="sym">NDX</span> <span class="pct up">+0.71%</span></span>
-				<span data-sym="DJI"><span class="sym">DJI</span> <span class="pct dn">−0.18%</span></span>
-				<span data-sym="RUT"><span class="sym">RUT</span> <span class="pct up">+0.09%</span></span>
-			</div>
+			<div class="ticker" aria-label="Tracked indices"><span>S&amp;P 500</span><span>Dow</span><span>Nasdaq 100</span><span>Russell 2000</span></div>
 		</div>
 		<div class="aside">
 			Pre-market<br>Real time
@@ -804,16 +785,11 @@
 		<div class="num">03</div>
 		<div class="body">
 			<div class="tags">
-				<span class="tag live">Live</span>
 				<span class="tag">Dev Tools</span>
 			</div>
 			<h2><a href="https://ccmux.ai">ccmux</a></h2>
 			<p class="desc">
-				A terminal UI (TUI) that keeps your AI coding sessions in one
-				place: Claude Code, Codex, Antigravity. They sync between your Mac
-				and your phone, send a push when the agent needs input, and keep
-				your laptop awake while they run. I built it so I can manage every
-				session from the terminal without remembering commands.
+				My terminal interface for managing AI coding sessions across Mac and phone. Keep Claude Code, Codex, and Antigravity together, with notifications when an agent needs you.
 			</p>
 		</div>
 		<div class="aside">
@@ -826,16 +802,12 @@
 		<div class="num">04</div>
 		<div class="body">
 			<div class="tags">
-				<span class="tag live">Live</span>
 				<span class="tag">AI Research</span>
 				<span class="tag">Interactive</span>
 			</div>
 			<h2><a href="https://intuitivepapers.ai">Intuitive Papers</a></h2>
 			<p class="desc">
-				I built this to study research papers and build an intuitive
-				understanding of the hottest and most important AI papers. Each explainer
-				starts with the intuition before the math, with playable figures
-				and claims checked against the source.
+				How I study AI research: intuition first, then the math. Interactive explainers with playable figures and claims checked against the original papers.
 			</p>
 			<div class="papers">DiffusionBlocks · LoRA · DPO · <span class="soon">Transformers</span></div>
 		</div>
@@ -849,13 +821,12 @@
 		<div class="num">05</div>
 		<div class="body">
 			<div class="tags">
-				<span class="tag live">Live</span>
 				<span class="tag">Editorial</span>
 				<span class="tag">Auto Culture</span>
 			</div>
 			<h2><a href="https://zerohour.club">ZEROHOUR<span class="kana">零時</span></a></h2>
 			<p class="desc">
-				ZEROHOUR is my car club and exploration of JDM auto culture.
+				My car club, rooted in JDM culture.
 			</p>
 		</div>
 		<div class="aside">
@@ -868,13 +839,12 @@
 		<div class="num">06</div>
 		<div class="body">
 			<div class="tags">
-				<span class="tag live">Live</span>
 				<span class="tag">Apparel</span>
 				<span class="tag">Drop 001</span>
 			</div>
 			<h2><a href="https://killsuwithhammer.com">Kills U With Hammer</a></h2>
 			<p class="desc">
-				Kills U With Hammer is my exploration into fashion through a limited streetwear drop.
+				My first exploration into streetwear. One limited drop.
 			</p>
 			<span class="drop-code">DROP / 001 · NO RESTOCK</span>
 		</div>
@@ -884,16 +854,27 @@
 		</div>
 	</li>
 
-	<li class="project p-home">
-		<div class="num">07</div>
+	<li class="project p-stickerly">
+        <div class="num">07</div>
+        <div class="body">
+            <div class="tags"><span class="tag">Telegram</span><span class="tag">Stickers</span></div>
+            <h2><a href="https://stickers.skz.dev/">Stickerly Import Bot</a></h2>
+            <p class="desc">
+				Bring animated and static Sticker.ly packs into Telegram. A free bot with transparent animation conversion, live progress, and a native pack library.
+			</p>
+        </div>
+        <div class="aside">Animated + static<br>Free to use<a class="url" href="https://stickers.skz.dev/">stickers.skz.dev</a></div>
+    </li>
+
+    <li class="project p-home">
+        <div class="num">08</div>
 		<div class="body">
 			<div class="tags">
-				<span class="tag live">Live</span>
 				<span class="tag">Home</span>
 			</div>
 			<h2><a href="https://skz.dev">skz.dev</a></h2>
 			<p class="desc">
-				My personal homepage, skz.dev — my first landing page, online since 2020.
+				My original home on the web, online since 2020.
 			</p>
 			<span class="wave">· · ·  ·  ·   ·    ·     ·    ·   ·  ·  · · ·</span>
 		</div>
@@ -909,7 +890,7 @@
 <footer class="foot">
 	<span><a href="https://skz.dev">← skz.dev</a></span>
 	<span class="mid">Sasha Kuznetsov · MMXXVI</span>
-	<span class="end"><a href="mailto:me@skz.dev">me@skz.dev</a></span>
+	<span class="end">Say hello · <a href="mailto:me@skz.dev">me@skz.dev</a></span>
 </footer>
 
 <script>
@@ -922,7 +903,7 @@
 		if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 		if (matchMedia('(max-width: 800px)').matches) return;
 
-		var rowDelays = [0.10, 0.18, 0.26, 0.34, 0.42, 0.50, 0.58];
+		var rowDelays = [0.10, 0.18, 0.26, 0.34, 0.42, 0.50, 0.58, 0.66];
 		var perChar = 0.022;
 
 		document.querySelectorAll('.project h2 a').forEach(function (a, rowIdx) {
@@ -981,32 +962,6 @@
 		});
 	}());
 
-	// Implied Open ticker — mean-reverting drift, ±0.05% noise per tick.
-	// Not real data; designed so swapping in an API call is a one-place change.
-	(function () {
-		if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-		var seeds = { SPX: 0.42, NDX: 0.71, DJI: -0.18, RUT: 0.09 };
-		var live = Object.assign({}, seeds);
-
-		function fmt(v) {
-			var sign = v >= 0 ? '+' : '−';
-			return sign + Math.abs(v).toFixed(2) + '%';
-		}
-
-		function tick() {
-			Object.keys(live).forEach(function (sym) {
-				var noise = (Math.random() - 0.5) * 0.05;
-				var pull = (seeds[sym] - live[sym]) * 0.10;
-				live[sym] += noise + pull;
-				var el = document.querySelector('[data-sym="' + sym + '"] .pct');
-				if (!el) return;
-				el.textContent = fmt(live[sym]);
-				el.classList.toggle('up', live[sym] >= 0);
-				el.classList.toggle('dn', live[sym] < 0);
-			});
-		}
-		setInterval(tick, 1400);
-	}());
 
 	// ZEROHOUR kana rotation — JDM lexicon, blur-swap every ~5s.
 	(function () {
@@ -1027,7 +982,7 @@
 		}, 5000);
 	}());
 
-	// keyboard nav: 1-7 jump to project, j/k step through, Enter opens.
+	// keyboard nav: 1-8 jump to project, j/k step through, Enter opens.
 	(function () {
 		var titles = Array.prototype.slice.call(document.querySelectorAll('.project h2 a'));
 		if (!titles.length) return;
@@ -1036,7 +991,7 @@
 			var a = titles[i];
 			if (!a) return;
 			a.focus({ preventScroll: true });
-			a.scrollIntoView({ behavior: 'smooth', block: 'center' });
+			a.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'center' });
 		}
 
 		function currentIndex() {
@@ -1052,7 +1007,7 @@
 			if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
 
 			var k = e.key;
-			if (k >= '1' && k <= '7') {
+			if (k >= '1' && k <= String(titles.length)) {
 				e.preventDefault();
 				focusProject(parseInt(k, 10) - 1);
 			} else if (k === 'j' || k === 'J') {
