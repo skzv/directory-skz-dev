@@ -511,8 +511,6 @@
 			line-height: 1.6;
 			color: var(--ink-soft);
 		}
-		.papers .soon { color: var(--ink-faint); }
-		.papers .soon::after { content: " (soon)"; color: var(--accent); }
 
 		/* ── 05 ZEROHOUR — neon JDM ────────────────────────────── */
 		.p-zerohour { --accent: var(--accent-04); }
@@ -723,6 +721,30 @@
 			.project h2 a:focus-visible { outline-offset: 5px; }
 		}
 
+		/* Small details, animated only while exploring a project. */
+		.p-home .wave { display: flex; gap: 0.35rem; width: fit-content; }
+		.wave span { display: inline-block; }
+		.sticker-mark {
+			position: absolute; top: 2rem; right: 0.5rem;
+			display: grid; place-items: center; width: 2rem; height: 2rem;
+			border: 1px solid var(--accent); border-radius: 0.5rem 0.5rem 0.8rem 0.5rem;
+			color: var(--accent); font-size: 1.25rem; transform: rotate(10deg);
+			transition: transform 0.25s ease, background-color 0.25s ease;
+		}
+		.key-hint { width: var(--container); margin: 0 auto 1.5rem; color: var(--ink-faint); font: 10px/1.8 var(--mono); letter-spacing: 0.04em; }
+		.key-hint > span:first-child { color: var(--ink-soft); margin-right: 0.75rem; }
+		.key-hint kbd { font: inherit; color: var(--ink); border: 1px solid var(--rule); border-radius: 3px; padding: 0.15rem 0.3rem; }
+		@keyframes dot-wave { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+		@media (prefers-reduced-motion: no-preference) {
+			.p-home:focus-within .wave span { animation: dot-wave 0.8s ease-in-out 2; animation-delay: calc(var(--i) * 35ms); }
+			.p-stickerly:focus-within .sticker-mark { transform: rotate(-8deg) translateY(-3px); background: rgba(88,194,255,0.08); }
+		}
+		@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+			.p-home:hover .wave span { animation: dot-wave 0.8s ease-in-out 2; animation-delay: calc(var(--i) * 35ms); }
+			.p-stickerly:hover .sticker-mark { transform: rotate(-8deg) translateY(-3px); background: rgba(88,194,255,0.08); }
+		}
+		@media (hover: none) { .key-hint { display: none; } }
+
 		@media (prefers-reduced-motion: reduce) {
 			*, ::before, ::after {
 				animation-duration: 0.01ms !important;
@@ -819,7 +841,7 @@
 			<p class="desc">
 				How I study AI research: intuition first, then the math. Interactive explainers with playable figures and claims checked against the original papers.
 			</p>
-			<div class="papers">DiffusionBlocks · LoRA · DPO · <span class="soon">Transformers</span></div>
+			<div class="papers">DiffusionBlocks · LoRA · DPO · Transformers</div>
 		</div>
 		<div class="aside">
 			Explainers<br>Interactive
@@ -865,6 +887,7 @@
 	</li>
 
 	<li class="project p-stickerly">
+		<span class="sticker-mark" aria-hidden="true">✦</span>
         <div class="num">07</div>
         <div class="body">
             <div class="tags"><span class="tag">Telegram</span><span class="tag">Stickers</span></div>
@@ -886,7 +909,7 @@
 			<p class="desc">
 				My original home on the web, online since 2020.
 			</p>
-			<span class="wave">· · ·  ·  ·   ·    ·     ·    ·   ·  ·  · · ·</span>
+			<span class="wave" aria-hidden="true"><span style="--i:0">·</span><span style="--i:1">·</span><span style="--i:2">·</span><span style="--i:3">·</span><span style="--i:4">·</span><span style="--i:5">·</span><span style="--i:6">·</span><span style="--i:7">·</span><span style="--i:8">·</span><span style="--i:9">·</span><span style="--i:10">·</span><span style="--i:11">·</span><span style="--i:12">·</span><span style="--i:13">·</span><span style="--i:14">·</span><span style="--i:15">·</span></span>
 		</div>
 		<div class="aside">
 			Home page<br>Since 2020
@@ -897,6 +920,7 @@
 </ol>
 </main>
 
+<p class="key-hint"><span>Take a shortcut</span> <kbd>1–8</kbd> jump to a project <span aria-hidden="true">·</span> <kbd>j</kbd> <kbd>k</kbd> browse <span aria-hidden="true">·</span> <kbd>↵</kbd> open</p>
 <footer class="foot">
 	<span><a href="https://skz.dev">← skz.dev</a></span>
 	<span class="mid">Sasha Kuznetsov · MMXXVI</span>
