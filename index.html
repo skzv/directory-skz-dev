@@ -456,6 +456,11 @@
 			flex-wrap: wrap;
 		}
 
+		.ticker .sym { color: var(--ink); font-weight: 600; }
+		.ticker .pct { transition: color 0.4s ease; }
+		.ticker .up { color: var(--accent-03); }
+		.ticker .dn { color: var(--accent-05); }
+
 		/* ── 03 CCMUX — terminal pane ──────────────────────────── */
 		.p-stickerly { --accent: #58c2ff; }
         .p-stickerly h2 { font-size: clamp(2rem, 4vw, 3.5rem); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-weight: 700; letter-spacing: -.035em; }
@@ -773,7 +778,12 @@
 			<p class="desc">
 				See what index futures imply before the market opens. I built this to explore the relationship between futures and spot prices.
 			</p>
-			<div class="ticker" aria-label="Tracked indices"><span>S&amp;P 500</span><span>Dow</span><span>Nasdaq 100</span><span>Russell 2000</span></div>
+			<div class="ticker">
+				<span data-sym="SPX"><span class="sym">SPX</span> <span class="pct up">+0.42%</span></span>
+				<span data-sym="NDX"><span class="sym">NDX</span> <span class="pct up">+0.71%</span></span>
+				<span data-sym="DJI"><span class="sym">DJI</span> <span class="pct dn">−0.18%</span></span>
+				<span data-sym="RUT"><span class="sym">RUT</span> <span class="pct up">+0.09%</span></span>
+			</div>
 		</div>
 		<div class="aside">
 			Pre-market<br>Real time
@@ -962,6 +972,33 @@
 		});
 	}());
 
+
+	// Implied Open ticker — mean-reverting drift, ±0.05% noise per tick.
+	// Not real data; designed so swapping in an API call is a one-place change.
+	(function () {
+		if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+		var seeds = { SPX: 0.42, NDX: 0.71, DJI: -0.18, RUT: 0.09 };
+		var live = Object.assign({}, seeds);
+
+		function fmt(v) {
+			var sign = v >= 0 ? '+' : '−';
+			return sign + Math.abs(v).toFixed(2) + '%';
+		}
+
+		function tick() {
+			Object.keys(live).forEach(function (sym) {
+				var noise = (Math.random() - 0.5) * 0.05;
+				var pull = (seeds[sym] - live[sym]) * 0.10;
+				live[sym] += noise + pull;
+				var el = document.querySelector('[data-sym="' + sym + '"] .pct');
+				if (!el) return;
+				el.textContent = fmt(live[sym]);
+				el.classList.toggle('up', live[sym] >= 0);
+				el.classList.toggle('dn', live[sym] < 0);
+			});
+		}
+		setInterval(tick, 1400);
+	}());
 
 	// ZEROHOUR kana rotation — JDM lexicon, blur-swap every ~5s.
 	(function () {
