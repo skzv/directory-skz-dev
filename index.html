@@ -117,7 +117,7 @@
 					"position": 7,
 					"url": "https://stickers.skz.dev/",
 					"name": "Stickerly Import Bot",
-					"description": "Bring animated and static Sticker.ly packs into Telegram. A free bot with transparent animation conversion, live progress, and a native pack library."
+					"description": "Your stickers. A new home. Send a Sticker.ly pack link to my Telegram bot and bring your favorite reactions with you. Animated or static, free, and right inside Telegram."
 				},
 				{
 					"@type": "ListItem",
@@ -462,8 +462,18 @@
 		.ticker .dn { color: var(--accent-05); }
 
 		/* ── 03 CCMUX — terminal pane ──────────────────────────── */
-		.p-stickerly { --accent: #58c2ff; }
-        .p-stickerly h2 { font-size: clamp(2rem, 4vw, 3.5rem); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-weight: 700; letter-spacing: -.035em; }
+		/* Stickerly — blue app badge and soft transfer card. */
+		.p-stickerly { --accent: #42bbee; }
+		.p-stickerly h2 { font: 750 clamp(2.4rem, 4.5vw, 4rem)/1 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; letter-spacing: -0.05em; }
+		.p-stickerly h2 a { display: inline-flex; align-items: center; gap: 0.25em; }
+		.sticker-logo { display: grid; place-items: center; flex: none; width: 1.15em; height: 1.15em; border-radius: 0.32em 0.32em 0.32em 0.12em; background: linear-gradient(140deg, #42bbee, #098ad0); color: white; font-size: 0.72em; letter-spacing: -0.05em; transform: rotate(-6deg); box-shadow: inset 0 1px 1px #ffffff70; transition: transform 0.25s ease; }
+		.sticker-subtitle { display: block; margin-top: 0.5em; font-size: max(11px, 0.25em); font-weight: 500; letter-spacing: 0.06em; color: var(--ink-soft); }
+		.sticker-transfer { display: inline-flex; align-items: center; gap: 0.75rem; margin-top: 1.25rem; padding: 0.75rem 1rem; border: 1px solid rgba(156,220,255,0.22); border-radius: 14px; background: linear-gradient(120deg, rgba(66,187,238,0.12), rgba(255,255,255,0.04)); font: 500 12px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #d9f1ff; }
+		.sticker-transfer .transfer-arrow { color: var(--accent); }
+		.sticker-transfer .transfer-check { color: #91e7bb; margin-left: 0.25rem; }
+		@media (prefers-reduced-motion: no-preference) { .p-stickerly:focus-within .sticker-logo { transform: rotate(3deg); } }
+		@media (hover: hover) and (prefers-reduced-motion: no-preference) { .p-stickerly:hover .sticker-logo { transform: rotate(3deg); } }
+
         .p-ccmux { --accent: var(--accent-03); }
 		.p-ccmux h2 {
 			font-family: var(--mono);
@@ -724,24 +734,15 @@
 		/* Small details, animated only while exploring a project. */
 		.p-home .wave { display: flex; gap: 0.35rem; width: fit-content; }
 		.wave span { display: inline-block; }
-		.sticker-mark {
-			position: absolute; top: 2rem; right: 0.5rem;
-			display: grid; place-items: center; width: 2rem; height: 2rem;
-			border: 1px solid var(--accent); border-radius: 0.5rem 0.5rem 0.8rem 0.5rem;
-			color: var(--accent); font-size: 1.25rem; transform: rotate(10deg);
-			transition: transform 0.25s ease, background-color 0.25s ease;
-		}
 		.key-hint { width: var(--container); margin: 0 auto 1.5rem; color: var(--ink-faint); font: 10px/1.8 var(--mono); letter-spacing: 0.04em; }
 		.key-hint > span:first-child { color: var(--ink-soft); margin-right: 0.75rem; }
 		.key-hint kbd { font: inherit; color: var(--ink); border: 1px solid var(--rule); border-radius: 3px; padding: 0.15rem 0.3rem; }
 		@keyframes dot-wave { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
 		@media (prefers-reduced-motion: no-preference) {
 			.p-home:focus-within .wave span { animation: dot-wave 0.8s ease-in-out 2; animation-delay: calc(var(--i) * 35ms); }
-			.p-stickerly:focus-within .sticker-mark { transform: rotate(-8deg) translateY(-3px); background: rgba(88,194,255,0.08); }
 		}
 		@media (hover: hover) and (prefers-reduced-motion: no-preference) {
 			.p-home:hover .wave span { animation: dot-wave 0.8s ease-in-out 2; animation-delay: calc(var(--i) * 35ms); }
-			.p-stickerly:hover .sticker-mark { transform: rotate(-8deg) translateY(-3px); background: rgba(88,194,255,0.08); }
 		}
 		@media (hover: none) { .key-hint { display: none; } }
 
@@ -887,14 +888,14 @@
 	</li>
 
 	<li class="project p-stickerly">
-		<span class="sticker-mark" aria-hidden="true">✦</span>
         <div class="num">07</div>
         <div class="body">
             <div class="tags"><span class="tag">Telegram</span><span class="tag">Stickers</span></div>
-            <h2><a href="https://stickers.skz.dev/">Stickerly Import Bot</a></h2>
+            <h2><a href="https://stickers.skz.dev/" aria-label="Stickerly Import Bot"><span class="sticker-logo" aria-hidden="true">s.</span><span>stickerly<span class="sticker-subtitle">import bot</span></span></a></h2>
             <p class="desc">
-				Bring animated and static Sticker.ly packs into Telegram. A free bot with transparent animation conversion, live progress, and a native pack library.
+				Your stickers. A new home. Send a Sticker.ly pack link to my Telegram bot and bring your favorite reactions with you. Animated or static, free, and right inside Telegram.
 			</p>
+			<div class="sticker-transfer"><span>Sticker.ly</span><span class="transfer-arrow" aria-hidden="true">→</span><span>Telegram</span><span class="transfer-check" aria-hidden="true">✓</span></div>
         </div>
         <div class="aside">Animated + static<br>Free to use<a class="url" href="https://stickers.skz.dev/">stickers.skz.dev</a></div>
     </li>
@@ -941,7 +942,7 @@
 		var perChar = 0.022;
 
 		document.querySelectorAll('.project h2 a').forEach(function (a, rowIdx) {
-			if (rowIdx === 0) return; // Keep the first project visible immediately.
+			if (rowIdx === 0 || a.closest('.p-stickerly')) return; // Preserve the first title and Stickerly's app wordmark.
 			var startDelay = (rowDelays[rowIdx] || 0.10) + 0.25; // wait for row rise
 			var idx = 0;
 
