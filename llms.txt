@@ -1,0 +1,21 @@
+# Sasha Kuznetsov — Project Directory
+
+> Index of software tools, writing, research explainers, and side projects by Sasha Kuznetsov (AI research software engineer and physicist).
+
+- Canonical URL: https://directory.skz.dev/
+- Homepage: https://skz.dev/
+- Email: me@skz.dev
+- GitHub: https://github.com/skzv
+- X: https://x.com/_skzv
+- LinkedIn: https://www.linkedin.com/in/skzv
+
+## Selected Projects
+
+1. [Sasha Kuznetsov's Blog](https://blog.skz.dev/): Notes and write-ups on machine learning, physics, markets, and projects I’m working on. (Writing, since 2018)
+2. [Implied Open](https://impliedopen.com/): Tracks what S&P 500, Nasdaq, Dow, and Russell futures imply before the cash open. Built to see how overnight futures line up with spot prices. (Finance, Data Viz)
+3. [ccmux](https://ccmux.ai/): Terminal UI for running Claude Code, Codex, and Antigravity in one place. Syncs between Mac and phone, and sends notifications when an agent needs input. (Dev Tools)
+4. [Intuitive Papers](https://intuitivepapers.ai/): Interactive walkthroughs of ML papers, starting with intuition before the math. Playable figures and claims checked against the source paper. Covers DiffusionBlocks, LoRA, DPO, and Transformers. (AI Research, Interactive)
+5. [ZEROHOUR](https://zerohour.club/): Car club and editorial project covering JDM builds and late-night meets in Tokyo, Seoul, Taipei, and Hong Kong. (Editorial, Auto Culture)
+6. [Kills U With Hammer](https://killsuwithhammer.com/): One graphic tee, one small run, no restocks. First clothing drop. (Apparel, Drop 001)
+7. [Stickerly Import Bot](https://stickers.skz.dev/): Free Telegram bot that imports animated and static Sticker.ly packs into Telegram. Paste a pack link and get a native sticker set. (Telegram, Stickers)
+8. [skz.dev](https://skz.dev/): Personal homepage, bio, and links. Online since 2020. (Home)

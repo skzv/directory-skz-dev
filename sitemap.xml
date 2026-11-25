@@ -3,10 +3,10 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://directory.skz.dev/</loc>
-    <lastmod>2026-09-08</lastmod>
+    <lastmod>2026-11-25</lastmod>
     <image:image>
-      <image:loc>https://directory.skz.dev/assets/img/og.png</image:loc>
-      <image:title>Sasha Kuznetsov — Projects &amp; Selected Work</image:title>
+      <image:loc>https://directory.skz.dev/assets/img/og.png?v=8</image:loc>
+      <image:title>Projects &amp; Selected Work — Sasha Kuznetsov</image:title>
     </image:image>
   </url>
 </urlset>
